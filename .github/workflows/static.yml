@@ -1,20 +1,145 @@
-name:  Deploy   static  content  to  Pages
-on:
-  push:
-      branches:
-        -  main
-        jobs:
-          deploy:
-              runs-on:  ubuntu_latest
-                  steps:
-                    -  name:  Checkout  repository
-                       uses:  actions/checkout@v4
-                    -  name: Setup  Pages
-                       uses:  actions/configure-pages@v5
-                    -  name:  Upload artifact
-                       with:
-                          path:  ./
-                    -  name: deploy to Github  Pages
-                       id: deployment
-                       uses:  actions/deploy-pages@v4
+{
+  "project": "Belote Amicale",
+  "issues": [
+    {
+      "title": "Acheter nom de domaine et créer comptes outils",
+      "body": "Acheter un domaine (belote-amicale.fr). Créer comptes GitHub, Supabase, Render/Vercel, Figma.",
+      "milestone": "Semaine 0 — Préparation",
+      "labels": ["infra"]
+    },
+    {
+      "title": "Créer maquette des pages principales",
+      "body": "Écrans à concevoir : Accueil, Lobby, Table, Profil, Aide. Définir ergonomie adaptée aux seniors (texte large, contraste).",
+      "milestone": "Semaine 1 — Maquette & UX",
+      "labels": ["design", "frontend"]
+    },
+    {
+      "title": "Initialiser projet React + Tailwind",
+      "body": "Créer base du front-end avec React (Vite ou CRA) et Tailwind. Structurer composants et pages.",
+      "milestone": "Semaine 2 — Setup technique",
+      "labels": ["frontend", "infra"]
+    },
+    {
+      "title": "Créer backend Node.js + Express",
+      "body": "Initialiser serveur Express. Créer routes basiques et connexion à Supabase.",
+      "milestone": "Semaine 2 — Setup technique",
+      "labels": ["backend", "infra"]
+    },
+    {
+      "title": "Configurer Supabase (auth + base)",
+      "body": "Créer tables utilisateurs, tables, parties. Configurer Supabase Auth pour gestion des comptes.",
+      "milestone": "Semaine 2 — Setup technique",
+      "labels": ["backend", "auth"]
+    },
+    {
+      "title": "Page d'inscription et de connexion",
+      "body": "Intégrer Supabase Auth côté front : pseudo, mot de passe, avatar. Gérer erreurs et validation.",
+      "milestone": "Semaine 3 — Authentification",
+      "labels": ["frontend", "auth"]
+    },
+    {
+      "title": "Page de profil joueur",
+      "body": "Modifier pseudo, avatar, préférences d’affichage (taille police, sons). Sauvegarde dans DB.",
+      "milestone": "Semaine 3 — Authentification",
+      "labels": ["frontend", "auth"]
+    },
+    {
+      "title": "Créer Lobby (liste des tables)",
+      "body": "Afficher tables disponibles, joueurs présents, bouton Créer/Rejoindre table. Gérer statut table (attente/en cours).",
+      "milestone": "Semaine 4 — Lobby & tables",
+      "labels": ["frontend", "backend", "infra"]
+    },
+    {
+      "title": "API des tables de jeu",
+      "body": "Endpoints : GET /tables, POST /tables, PATCH /tables/:id/join. Gérer statut et joueurs.",
+      "milestone": "Semaine 4 — Lobby & tables",
+      "labels": ["backend"]
+    },
+    {
+      "title": "Implémenter chat global (salon)",
+      "body": "Installer Socket.IO. Chat en temps réel entre tous les joueurs connectés.",
+      "milestone": "Semaine 5 — Chat global",
+      "labels": ["backend", "chat"]
+    },
+    {
+      "title": "Implémenter chat de table",
+      "body": "Chat privé entre les 4 joueurs d’une table. Persistance optionnelle (Supabase).",
+      "milestone": "Semaine 5 — Chat global",
+      "labels": ["backend", "frontend", "chat"]
+    },
+    {
+      "title": "Créer moteur de jeu Belote (prototype)",
+      "body": "Module JS : distribution des cartes, tours, validation des coups, calcul des plis. Communication via Socket.IO.",
+      "milestone": "Semaine 6 — Moteur de jeu",
+      "labels": ["backend", "gameplay"]
+    },
+    {
+      "title": "Interface table de jeu (cartes + actions)",
+      "body": "Afficher cartes du joueur, cartes jouées, avatars, scores. Gérer interactions simples.",
+      "milestone": "Semaine 7 — Interface table",
+      "labels": ["frontend", "design", "gameplay"]
+    },
+    {
+      "title": "Animations et accessibilité table de jeu",
+      "body": "Transitions pour cartes jouées, gros boutons, indicateurs visuels de tour, lisibilité.",
+      "milestone": "Semaine 7 — Interface table",
+      "labels": ["frontend", "design"]
+    },
+    {
+      "title": "Ajouter IA bots simples",
+      "body": "Créer bots qui jouent automatiquement des cartes valides. Intégrer comme joueurs Socket.IO.",
+      "milestone": "Semaine 8 — IA bots",
+      "labels": ["backend", "gameplay"]
+    },
+    {
+      "title": "Améliorer IA bots niveau moyen",
+      "body": "Bots avec logique simple (atout, suivre couleur, garder fortes cartes).",
+      "milestone": "Semaine 8 — IA bots",
+      "labels": ["backend", "gameplay"]
+    },
+    {
+      "title": "Créer système de scores et classement",
+      "body": "Tables DB : games, rounds, scores. Page classement général et historique de parties.",
+      "milestone": "Semaine 9 — Scores & classement",
+      "labels": ["backend", "frontend", "gameplay"]
+    },
+    {
+      "title": "Tests complets et accessibilité",
+      "body": "Test navigation complète. Vérifier tailles de police, contraste, lisibilité. Corriger bugs majeurs.",
+      "milestone": "Semaine 10 — Tests & corrections",
+      "labels": ["frontend", "design", "infra"]
+    },
+    {
+      "title": "Créer section Aide & FAQ",
+      "body": "Règles de la belote, comment rejoindre table, expliquer le chat et le score.",
+      "milestone": "Semaine 10 — Tests & corrections",
+      "labels": ["frontend", "design"]
+    },
+    {
+      "title": "Déploiement sur Render/Vercel",
+      "body": "Déployer front et back, connecter Supabase, lier domaine, SSL via Let’s Encrypt.",
+      "milestone": "Semaine 11 — Déploiement",
+      "labels": ["infra"]
+    },
+    {
+      "title": "Tests post-déploiement et monitoring",
+      "body": "Vérifier connexion, chat, jeu à plusieurs. Configurer logs et alertes Render.",
+      "milestone": "Semaine 11 — Déploiement",
+      "labels": ["infra", "backend"]
+    },
+    {
+      "title": "Lancement soft (groupe test)",
+      "body": "Inviter premiers joueurs, observer retours, corriger problèmes, surveiller performances.",
+      "milestone": "Semaine 12 — Lancement",
+      "labels": ["infra", "design", "frontend"]
+    },
+    {
+      "title": "Collecte de retours & amélioration continue",
+      "body": "Formulaire de retours, prioriser bugs, ajuster IA et chat. Suivi mensuel du budget.",
+      "milestone": "Semaine 12 — Lancement",
+      "labels": ["infra", "gameplay"]
+    }
+  ]
+}
+
 
