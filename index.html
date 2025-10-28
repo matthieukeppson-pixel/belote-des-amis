@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html  lang="fr">
-<head>
-  <meta  charset="UTF-8">
-    <title>Belote  Club  des  Anciens</title>
-  <head>
-    <body>
-      <h1>Bienvenue  au  Belote  Club  des Anciens</h1>
-      <p>Choisissez votre  mode  de jeu  :</p>
-      <ul>
-        <li><a   href="#">Belote  Classique</a></li>
-        <li><a  href="#">Belote  Contrée</a></li>
-        <li><a  href="#">Belote  Coinche</a></li>
-      </ul>
-      <html>
+name: Déploiement du site statique
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Déployer sur GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./static
+
                                        
                                        
                                 
