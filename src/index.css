@@ -1,0 +1,49 @@
+/* 🎴 Belote & Amis — style principal */
+:root{
+  --bg:#e9efe8;
+  --tapis:#1d5b1e;
+  --tapis-light:#2a6b2a;
+  --card-bg:#fff9f0;
+  --accent:#d4b04d;
+  --muted:#cbd5cf;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at center, #006400 0%, #013220 100%);
+  color:white;
+  min-height:100vh;
+}
+/* header */
+.header{background:linear-gradient(180deg, rgba(29,91,30,0.95), rgba(29,91,30,0.85));padding:12px 0;color:var(--card-bg);box-shadow:0 2px 6px rgba(0,0,0,0.15)}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.brand{font-weight:700}
+.navlink{color:rgba(255,255,255,0.9);text-decoration:none;margin-left:12px;font-weight:600}
+/* home */
+.home{min-height:calc(100vh - 0px);display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(180deg,var(--tapis),#2f7a2f);color:var(--card-bg);padding:24px}
+.logo{font-size:38px;font-weight:800;display:flex;align-items:center;gap:10px;justify-content:center}
+.brand-text{font-size:28px;color:var(--accent);margin-left:6px}
+.enter-btn{background:var(--accent);color:#072208;border:none;padding:12px 18px;border-radius:10px;font-weight:800;cursor:pointer;font-size:16px;box-shadow:0 6px 18px rgba(0,0,0,0.25);transition:transform .15s ease}
+.enter-btn:hover{ transform: scale(1.03) }
+/* lobby */
+.lobby{display:flex;gap:16px;padding:24px;max-width:1200px;margin:0 auto}
+.lobby-main{flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:10px;color:var(--card-bg)}
+.lobby-main h2{color:var(--accent);margin:0 0 6px;font-size:26px}
+.subtitle{color:rgba(255,255,255,0.85);margin-bottom:12px}
+.tables{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.table-card{background:linear-gradient(180deg, var(--tapis-light), var(--tapis));padding:12px;border-radius:10px;color:var(--card-bg);display:flex;justify-content:space-between;align-items:center;box-shadow:0 6px 20px rgba(0,0,0,0.3);transition:transform 0.2s ease}
+.table-card:hover{ transform:scale(1.03) }
+.table-info strong{display:block;color:var(--accent);font-size:18px;margin-bottom:6px}
+.table-actions button{background:var(--accent);border:none;color:#072208;padding:8px 10px;border-radius:8px;font-weight:700;cursor:pointer}
+.table-actions button:disabled{background:#6b6b6b;color:#ddd;cursor:default}
+/* chat */
+.lobby-chat{width:320px;background:#fff;padding:10px;border-radius:10px;display:flex;flex-direction:column;gap:8px;box-shadow:0 6px 20px rgba(0,0,0,0.12)}
+.chat-header{font-weight:800;color:#072208;padding:6px 8px;border-bottom:1px solid #eee}
+.chat-body{height:420px;overflow:auto;padding:8px;background:linear-gradient(180deg,#f7f7f7,#fff);border-radius:6px}
+.msg{margin-bottom:8px;padding:6px;border-radius:6px;background:#f3f3f3}
+.chat-input{display:flex;gap:8px;padding-top:8px}
+.chat-input input{flex:1;padding:8px;border-radius:8px;border:1px solid #ddd}
+.chat-input button{background:var(--tapis);color:var(--card-bg);border:none;padding:8px 10px;border-radius:8px;cursor:pointer}
+/* responsive */
+@media(max-width:900px){.lobby{flex-direction:column;padding:12px}.lobby-chat{width:100%}}
